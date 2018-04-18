@@ -34,7 +34,7 @@ public class JsonResponseFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext context = RequestContext.getCurrentContext();
 		if (context.getResponseStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-			String traceId = (String) context.getRequest().getAttribute(TracePreFilter.TRACE_ID_ATTR);
+			String traceId = (String) context.get(TracePreFilter.TRACE_ID_ATTR);
 			try {
 				context.setResponseBody(new ObjectMapper().writeValueAsString(new ResultBean<>(traceId, "Internal error")));
 			} catch (Exception e) {

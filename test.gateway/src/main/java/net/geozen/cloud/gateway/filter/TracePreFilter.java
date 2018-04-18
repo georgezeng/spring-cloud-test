@@ -11,9 +11,9 @@ import com.netflix.zuul.context.RequestContext;
 
 @Component
 public class TracePreFilter extends ZuulFilter {
-	
+
 	public final static String TRACE_ID_ATTR = "traceId";
-	
+
 	@Autowired
 	private Tracer tracer;
 
@@ -35,7 +35,7 @@ public class TracePreFilter extends ZuulFilter {
 	@Override
 	public Object run() {
 		RequestContext context = RequestContext.getCurrentContext();
-		context.getRequest().setAttribute(TRACE_ID_ATTR, tracer.getCurrentSpan().traceIdString());
+		context.set(TRACE_ID_ATTR, tracer.getCurrentSpan().traceIdString());
 		return null;
 	}
 }
