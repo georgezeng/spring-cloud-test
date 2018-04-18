@@ -4,5 +4,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/georgezeng/cloud-test-config.git
+          uri: https://github.com/georgezeng/spring-cloud-test.git
+          search-paths:
+          - /test.config.files
           default-label: ${configBranch:master}
