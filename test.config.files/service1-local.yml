@@ -1,0 +1,4 @@
+server.port: 8001
+common.name: common-test3
+service1.message: test
+ 
