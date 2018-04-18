@@ -14,6 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService detailService;
 
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin();

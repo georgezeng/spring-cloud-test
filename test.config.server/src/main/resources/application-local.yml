@@ -4,5 +4,4 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/georgezeng/work/git/private/spring-cloud-test/test.config.files
-          default-label: ${configBranch:development}
+          uri: file:///Users/georgezeng/work/git/private/spring-cloud-test

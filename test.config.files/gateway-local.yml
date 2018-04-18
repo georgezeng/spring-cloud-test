@@ -1,3 +1,4 @@
+error.path: /error
 zuul:
   routes:
     service1:
