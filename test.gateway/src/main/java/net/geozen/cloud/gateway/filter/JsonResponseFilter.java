@@ -38,7 +38,7 @@ public class JsonResponseFilter extends ZuulFilter {
 			try {
 				context.setResponseBody(new ObjectMapper().writeValueAsString(new ResultBean<>(traceId, "Internal error")));
 			} catch (Exception e) {
-				context.setResponseBody("traceId=" + traceId);
+				context.setResponseBody("{\"msg\":\"Internal error\", \"traceId\":\"" + traceId + "\"");
 			}
 		}
 		return null;
