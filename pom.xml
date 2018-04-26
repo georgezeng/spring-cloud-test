@@ -12,6 +12,12 @@
         <module>test.base</module>
         <module>test.setting.base</module>
         <module>test.setting.service</module>
+        <module>test.config.server</module>
+        <module>test.registry</module>
+        <module>test.gateway</module>
+        <module>test.service1</module>
+        <module>test.service2</module>
+        <module>test.admin</module>
     </modules>
 
 </project>
