@@ -7,6 +7,7 @@
 		<groupId>net.geozen.cloud</groupId>
 		<artifactId>test.setting.service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../test.setting.service</relativePath>
 	</parent>
 
 </project>

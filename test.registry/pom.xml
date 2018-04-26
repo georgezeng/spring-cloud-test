@@ -5,6 +5,7 @@
 		<groupId>net.geozen.cloud</groupId>
 		<artifactId>test.setting.base</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../test.setting.base</relativePath>
 	</parent>
 
 	<dependencies>
