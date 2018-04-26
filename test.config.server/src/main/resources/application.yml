@@ -8,3 +8,6 @@ spring:
           search-paths:
           - /test.config.files
           default-label: ${configBranch:master}
+  profiles:
+    active:
+    - local
