@@ -3,4 +3,11 @@ spring:
   profiles:
     active:
     - base
-    - local
+    - server
+  cloud:
+    config:
+     uri: http://config:8888
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/

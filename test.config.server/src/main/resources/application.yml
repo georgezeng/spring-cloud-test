@@ -10,4 +10,4 @@ spring:
           default-label: ${configBranch:master}
   profiles:
     active:
-    - local
+    - base, server
