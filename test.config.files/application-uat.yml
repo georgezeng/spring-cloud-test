@@ -2,4 +2,3 @@ spring:
   rabbitmq:
     username: admin
     password: geozen
-spring.redis.host: redis

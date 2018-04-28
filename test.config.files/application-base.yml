@@ -4,3 +4,4 @@ spring:
     port: 5672
   sleuth.sampler.percentage: 1
   zipkin.sender.type: rabbit
+  session.store-type: redis
