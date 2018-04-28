@@ -1,9 +1,5 @@
 spring.application.name: admin
 spring:
-  profiles:
-    active:
-    - base
-    - server
   cloud:
     config:
      uri: http://config:8888

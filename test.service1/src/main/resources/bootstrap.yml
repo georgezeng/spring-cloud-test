@@ -1,9 +1,5 @@
 spring.application.name: service1
 spring:
-  profiles:
-    active:
-    - base
-    - server
   cloud:
     config:
      uri: http://config:8888
