@@ -4,7 +4,20 @@ spring:
     config:
      uri: http://config:8888
      
+---
+spring.application.name: registry1
+spring:
+  profiles: registry1
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://registry2:8761/eureka/
+
+---
+spring.application.name: registry2
+spring:
+  profiles: registry2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry1:8761/eureka/

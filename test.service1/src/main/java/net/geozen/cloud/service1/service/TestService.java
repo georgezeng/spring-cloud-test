@@ -18,7 +18,7 @@ public class TestService {
 
 	private int count;
 
-//	@HystrixCommand(fallbackMethod = "getCommonName")
+	@HystrixCommand(fallbackMethod = "getCommonName")
 	public String getMessage() {
 		logger.debug("get message........");
 		if (count > 2) {
