@@ -16,7 +16,7 @@ eureka:
     hostname: registry1
   client:
     serviceUrl:
-      defaultZone: http://registry2/eureka/
+      defaultZone: http://registry2:8761/eureka/
 
 ---
 spring.application.name: registry2
@@ -27,4 +27,4 @@ eureka:
     hostname: registry2
   client:
     serviceUrl:
-      defaultZone: http://registry1/eureka/
+      defaultZone: http://registry1:8761/eureka/
