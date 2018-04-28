@@ -5,3 +5,5 @@ spring:
   sleuth.sampler.percentage: 1
   zipkin.sender.type: rabbit
   session.store-type: redis
+  
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
