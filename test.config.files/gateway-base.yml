@@ -7,3 +7,6 @@ zuul:
     service2:
       path: /service2/**
       serviceId: service2
+  host:
+    socket-timeout-millis: 20000
+    connect-timeout-millis: 20000

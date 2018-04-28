@@ -6,4 +6,4 @@ spring:
   zipkin.sender.type: rabbit
   session.store-type: redis
   
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 20000
