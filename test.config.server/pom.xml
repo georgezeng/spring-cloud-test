@@ -17,5 +17,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>net.geozen.cloud</groupId>
+			<artifactId>test.base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
