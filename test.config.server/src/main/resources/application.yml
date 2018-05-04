@@ -8,3 +8,5 @@ spring:
           search-paths:
           - /test.config.files
           default-label: ${configBranch:master}
+  application:
+    name: config-server
