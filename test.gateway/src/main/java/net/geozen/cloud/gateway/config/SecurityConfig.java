@@ -8,11 +8,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
+
+import net.geozen.cloud.gateway.filter.LoggingFilter;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService detailService;
+	
+	@Autowired
+	private LoggingFilter loggingFilter;
 
 
 	@Override
@@ -21,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.rememberMe().userDetailsService(detailService).alwaysRemember(true);
 		http.csrf().disable();
 		http.authorizeRequests().anyRequest().authenticated();
+		http.addFilterAfter(loggingFilter, ChannelProcessingFilter.class);
 	}
 
 	@Bean
