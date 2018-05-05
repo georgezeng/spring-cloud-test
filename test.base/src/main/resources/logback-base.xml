@@ -17,7 +17,7 @@
 		<property name="envTier" value="prod"/>
 	</springProfile>
 	
-	<springProfile name="server">
+	<springProfile name="server2">
 		<springProperty scope="context" name="springAppName"
 			source="spring.application.name" />
 		<appender name="KAFKA"
