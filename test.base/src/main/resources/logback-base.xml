@@ -17,7 +17,7 @@
 		<property name="envTier" value="prod"/>
 	</springProfile>
 	
-	<springProfile name="server2">
+	<springProfile name="server">
 		<springProperty scope="context" name="springAppName"
 			source="spring.application.name" />
 		<appender name="KAFKA"
@@ -34,8 +34,6 @@
 							{
 								"severity": "%level",
 								"service": "${springAppName:-}",
-								"host": "${HOSTNAME:-}",
-								"ip": "${IP:-}",
 								"env": "${envTier:-}",
 								"trace": "%X{X-B3-TraceId:-}",
 								"span": "%X{X-B3-SpanId:-}",
@@ -50,7 +48,7 @@
 					</pattern>
 				</providers>
 			</encoder>
-			<topic>logstash</topic>
+			<topic>logstash2</topic>
 			<keyingStrategy
 				class="com.github.danielwegener.logback.kafka.keying.LoggerNameKeyingStrategy" />
 			<deliveryStrategy
