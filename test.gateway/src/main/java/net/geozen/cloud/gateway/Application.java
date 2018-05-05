@@ -12,6 +12,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 public class Application {
 
     public static void main(String[] args) {
+    	System.out.println("start gateway......");
     	SpringApplication.run(Application.class, args);
     }
 
