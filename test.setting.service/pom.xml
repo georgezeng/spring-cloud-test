@@ -4,14 +4,32 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>test.setting.service</artifactId>
 	<packaging>pom</packaging>
-	
+
 	<parent>
 		<groupId>net.geozen.cloud</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 		<artifactId>test.setting.base</artifactId>
 		<relativePath>../test.setting.base</relativePath>
 	</parent>
-	
+
+	<profiles>
+		<profile>
+			<id>server</id>
+			<dependencies>
+				<dependency>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+					<version>${logback.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-core</artifactId>
+					<version>${logback.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jolokia</groupId>
@@ -42,5 +60,5 @@
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 </project>
