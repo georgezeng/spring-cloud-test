@@ -1,4 +1,4 @@
-spring.application.name: service1
+spring.application.name: service3
 spring:
   cloud:
     config:
