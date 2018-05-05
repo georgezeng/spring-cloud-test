@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
 	<include
-		resource="org/springframework/boot/logging/logback/base.xml" />
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
 		
 	<jmxConfigurator />
+	
+	<springProfile name="local">
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
 	
 	<springProfile name="dev">
 		<property name="envTier" value="dev"/>
