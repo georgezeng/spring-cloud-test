@@ -2,78 +2,62 @@
 <included>
 	<include
 		resource="org/springframework/boot/logging/logback/base.xml" />
-		
+
 	<jmxConfigurator />
-	
+
 	<springProfile name="dev">
-		<property name="envTier" value="dev"/>
+		<property name="envTier" value="dev" />
 	</springProfile>
-	
+
 	<springProfile name="uat">
-		<property name="envTier" value="uat"/>
+		<property name="envTier" value="uat" />
 	</springProfile>
-	
+
 	<springProfile name="prod">
-		<property name="envTier" value="prod"/>
+		<property name="envTier" value="prod" />
 	</springProfile>
-	
+
 	<springProfile name="server">
 		<springProperty scope="context" name="springAppName"
 			source="spring.application.name" />
+
 		<appender name="KAFKA"
 			class="com.github.danielwegener.logback.kafka.KafkaAppender">
 			<encoder
 				class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
 				<providers>
-				<!-- 
-					<timestamp>
-						<timeZone>UTC</timeZone>
-					</timestamp>
-					-->
+					<!-- <timestamp> <timeZone>UTC</timeZone> </timestamp> -->
 					<pattern>
 						<pattern>
 							{
-								"severity": "%level",
-								"service": "${springAppName:-}",
-								"host": "${HOSTNAME:-}",
-								"ip": "${IP:-}",
-								"env": "${envTier:-}",
-								"trace": "%X{X-B3-TraceId:-}",
-								"span": "%X{X-B3-SpanId:-}",
-								"parent": "%X{X-B3-ParentSpanId:-}",
-								"exportable": "%X{X-Span-Export:-}",
-								"pid": "${PID:-}",
-								"thread": "%thread",
-								"class": "%logger{40}",
-								"fullClass": "%logger",
-								"message": "%message"
+							"severity": "%level",
+							"service": "${springAppName:-}",
+							"host": "${HOSTNAME:-}",
+							"ip": "${IP:-}",
+							"env": "${envTier:-}",
+							"trace": "%X{X-B3-TraceId:-}",
+							"span": "%X{X-B3-SpanId:-}",
+							"parent": "%X{X-B3-ParentSpanId:-}",
+							"exportable": "%X{X-Span-Export:-}",
+							"pid": "${PID:-}",
+							"thread": "%thread",
+							"class": "%logger{40}",
+							"fullClass": "%logger",
+							"message": "%message"
 							}
 						</pattern>
 					</pattern>
 				</providers>
 			</encoder>
-			<topic>logstash</topic>
+			<topic>logs</topic>
 			<keyingStrategy
-				class="com.github.danielwegener.logback.kafka.keying.LoggerNameKeyingStrategy" />
+				class="com.github.danielwegener.logback.kafka.keying.RoundRobinKeyingStrategy" />
 			<deliveryStrategy
 				class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
-
-			<!-- Optional parameter to use a fixed partition -->
-			<!-- <partition>0</partition> -->
-
-			<!-- Optional parameter to include log timestamps into the kafka message -->
-			<!-- <appendTimestamp>true</appendTimestamp> -->
-
-			<!-- each <producerConfig> translates to regular kafka-client config (format: 
-				key=value) -->
-			<!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
-			<!-- bootstrap.servers is the only mandatory producerConfig -->
 			<producerConfig>bootstrap.servers=elkserver:9092</producerConfig>
-
-			<!-- this is the fallback appender if kafka is not available. -->
-			<!-- <appender-ref ref="CONSOLE" /> -->
+			<producerConfig>retries=2</producerConfig>
 		</appender>
-		
+
 		<root level="info">
 			<appender-ref ref="KAFKA" />
 		</root>
