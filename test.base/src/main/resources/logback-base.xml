@@ -50,7 +50,7 @@
 					</pattern>
 				</providers>
 			</encoder>
-			<topic>logs</topic>
+			<topic>logstash</topic>
 			<keyingStrategy
 				class="com.github.danielwegener.logback.kafka.keying.LoggerNameKeyingStrategy" />
 			<deliveryStrategy
