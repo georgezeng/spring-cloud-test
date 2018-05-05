@@ -55,7 +55,7 @@
 			</encoder>
 			<topic>logstash</topic>
 			<keyingStrategy
-				class="com.github.danielwegener.logback.kafka.keying.LoggerNameKeyingStrategy" />
+				class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />
 			<deliveryStrategy
 				class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
 
