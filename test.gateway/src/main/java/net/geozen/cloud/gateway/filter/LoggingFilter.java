@@ -22,7 +22,7 @@ public class LoggingFilter extends GenericFilterBean {
 		try {
 			HttpServletRequest req = (HttpServletRequest) request;
 			MDC.put("requestUri", req.getRequestURL().append("?" + req.getQueryString()).toString());
-			String clientIP = req.getHeader("x-forwarded-for");
+			String clientIP = req.getHeader("X-Forwarded-For");
 			if (StringUtils.isEmpty(clientIP)) {
 				clientIP = req.getRemoteAddr();
 			}
