@@ -21,7 +21,11 @@ public class LoggingFilter extends GenericFilterBean {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		try {
 			HttpServletRequest req = (HttpServletRequest) request;
-			MDC.put("requestUri", req.getRequestURL().append("?" + req.getQueryString()).toString());
+			String url = req.getRequestURI();
+			if (req.getQueryString() != null) {
+				url += req.getQueryString();
+			}
+			MDC.put("requestUri", url);
 			String clientIP = req.getHeader("X-Forwarded-For");
 			if (StringUtils.isEmpty(clientIP)) {
 				clientIP = req.getRemoteAddr();
