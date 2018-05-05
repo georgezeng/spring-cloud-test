@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-	<include
-		resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
 		
 	<jmxConfigurator />
-	
-	<springProfile name="local">
-		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
-		<root level="INFO">
-			<appender-ref ref="CONSOLE" />
-		</root>
-	</springProfile>
 	
 	<springProfile name="dev">
 		<property name="envTier" value="dev"/>
@@ -38,27 +30,29 @@
 					</timestamp>
 					-->
 					<pattern>
-							{
-								"@level": "%level",
-								"service": "${springAppName}",
-								"host": "${HOSTNAME}",
-								"env": "${envTier}",
-								"trace": "%X{X-B3-TraceId}",
-								"span": "%X{X-B3-SpanId}",
-								"parent": "%X{X-B3-ParentSpanId}",
-								"exportable": "%X{X-Span-Export}",
-								"pid": "${PID}",
-								"thread": "%thread",
-								"class": "%logger{40}",
-								"fullClass": "%logger",
-								"message": "%message"
-							}
+						<pattern>
+								{
+									"@level": "%level",
+									"service": "${springAppName}",
+									"host": "${HOSTNAME}",
+									"env": "${envTier}",
+									"trace": "%X{X-B3-TraceId}",
+									"span": "%X{X-B3-SpanId}",
+									"parent": "%X{X-B3-ParentSpanId}",
+									"exportable": "%X{X-Span-Export}",
+									"pid": "${PID}",
+									"thread": "%thread",
+									"class": "%logger{40}",
+									"fullClass": "%logger",
+									"message": "%message"
+								}
+						</pattern>
 					</pattern>
 				</providers>
 			</encoder>
 			<topic>logstash</topic>
 			<keyingStrategy
-				class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />
+				class="com.github.danielwegener.logback.kafka.keying.LoggerNameKeyingStrategy" />
 			<deliveryStrategy
 				class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
 
@@ -73,9 +67,6 @@
 			<!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
 			<!-- bootstrap.servers is the only mandatory producerConfig -->
 			<producerConfig>bootstrap.servers=elkserver:9092</producerConfig>
-
-			<!-- this is the fallback appender if kafka is not available. -->
-			<!-- <appender-ref ref="CONSOLE" /> -->
 		</appender>
 		
 		<root level="info">
